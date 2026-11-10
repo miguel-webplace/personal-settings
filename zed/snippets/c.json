@@ -1,0 +1,6 @@
+{
+  "debug code insertion": {
+    "prefix": "dbg_insrt",
+    "body": ["#ifdef DEBUG$1", "printf(\" --- DEBUG ---> $2\", $3);", "#endif\n", "$0"]
+  }
+}
