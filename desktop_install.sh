@@ -15,52 +15,43 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
-if command -v apt-get >/dev/null 2>&1; then
-  PM=apt
-elif command -v dnf >/dev/null 2>&1; then
-  PM=dnf
-elif command -v pacman >/dev/null 2>&1; then
-  PM=pacman
-else
-  echo "Unsupported package manager (need apt, dnf or pacman)." >&2
-  exit 1
-fi
+apt_install() {
+	sudo apt install -y "$@"
+}
 
-pkg_install() {
-  case "$PM" in
-    apt)    sudo apt-get install -y "$@" ;;
-    dnf)    sudo dnf install -y "$@" ;;
-    pacman) sudo pacman -S --needed --noconfirm "$@" ;;
-  esac
+flatpak_install() {
+	flatpak install -y flathub "$@"
 }
 
 # ---------- base ----------
-log "Updating package index"
-case "$PM" in
-  apt)    sudo apt-get update ;;
-  dnf)    sudo dnf makecache ;;
-  pacman) sudo pacman -Sy ;;
-esac
+log "Clearing apt cache"
+sudo apt clean
+sudo rm -rf /var/lib/apt/lists/*
 
-pkg_install curl git
+log "Updating package index"
+sudo apt update
+
+apt_install curl git
 
 # ---------- Flatpak (for LocalSend + Zen Browser) ----------
 log "Installing Flatpak"
-pkg_install flatpak
+apt_install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # ---------- LocalSend ----------
 log "Installing LocalSend"
-flatpak install -y flathub app.localsend.localsend_app
+flatpak_install org.localsend.localsend_app
+
+LOCALSEND_CONFIG="var/app/org.localsend.localsend_app/data"
 
 # Config: set the device name (alias) shown to other devices
 LOCALSEND_NAME="minuz-notebook"
-pkg_install python3
-for dir in \
-  "$HOME/.var/app/app.localsend.localsend_app/data/org.localsend.localsend_app" \
-  "$HOME/.var/app/app.localsend.localsend_app/data/app.localsend.localsend_app"; do
-  mkdir -p "$dir"
-  python3 - "$dir/shared_preferences.json" "$LOCALSEND_NAME" <<'PY'
+
+apt_install python3
+mkdir -p "$LOCALSEND_CONFIG"
+
+# -- < Python script to change device name 
+python3 - "$LOCALSEND_CONFIG/shared_preferences.json" "$LOCALSEND_NAME" <<'PY'
 import json, sys
 path, name = sys.argv[1], sys.argv[2]
 try:
@@ -73,17 +64,19 @@ with open(path, "w") as f:
     json.dump(data, f, indent=4)
 PY
 done
+# -- >
 
 # ---------- Zen Browser ----------
 log "Installing Zen Browser"
-flatpak install -y flathub app.zen_browser.zen
+flatpak_install app.zen_browser.zen
 
 # ---------- zsh ----------
 log "Installing zsh"
-pkg_install zsh
+apt_install zsh
 
 # ---------- oh-my-zsh ----------
 log "Installing oh-my-zsh"
+
 # TODO: configuration (to be provided)
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c \
@@ -130,28 +123,18 @@ fi
 
 # ---------- neovim ----------
 log "Installing neovim"
-pkg_install neovim
+apt_install neovim
 
 # ---------- openssh ----------
 log "Installing openssh"
-case "$PM" in
-  apt)    pkg_install openssh-client openssh-server ;;
-  dnf)    pkg_install openssh-clients openssh-server ;;
-  pacman) pkg_install openssh ;;
-esac
+apt_install openssh-client openssh-server
 
 # ---------- Fingerprint unlock (fprintd) ----------
 log "Installing fingerprint support (fprintd, libpam-fprintd)"
-case "$PM" in
-  apt)    pkg_install fprintd libpam-fprintd ;;
-  dnf)    pkg_install fprintd fprintd-pam ;;
-  pacman) pkg_install fprintd ;;
-esac
+apt_install fprintd libpam-fprintd
 
-if [[ "$PM" == "apt" ]]; then
-  log "Enabling fingerprint authentication in PAM"
-  sudo pam-auth-update --enable fprintd
-fi
+log "Enabling fingerprint authentication in PAM"
+sudo pam-auth-update --enable fprintd
 
 if command -v fprintd-enroll >/dev/null 2>&1 && [[ -t 0 ]]; then
   read -rp "Enroll a fingerprint now? [y/N] " ENROLL || ENROLL=""
@@ -185,16 +168,10 @@ else
 fi
 
 # ---------- Docker ----------
+
 log "Installing Docker"
 if ! command -v docker >/dev/null 2>&1; then
-  case "$PM" in
-    pacman)
-      pkg_install docker docker-compose
-      ;;
-    *)
-      curl -fsSL https://get.docker.com | sudo sh
-      ;;
-  esac
+  curl -fsSL https://get.docker.com | sudo sh
 else
   warn "Docker already installed, skipping"
 fi
