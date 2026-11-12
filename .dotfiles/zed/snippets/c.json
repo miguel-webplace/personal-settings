@@ -1,4 +1,10 @@
 {
+  
+  "main function": {
+    "prefix": "mainf",
+    "body": ["int main($1) {", "\t$0", "\treturn 0;", "}"]
+  },
+  
   "debug code insertion": {
     "prefix": "dbg_insrt",
     "body": ["#ifdef DEBUG$1", "printf(\" --- DEBUG ---> $2\", $3);", "#endif\n", "$0"]
