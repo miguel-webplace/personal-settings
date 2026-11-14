@@ -1,0 +1,42 @@
+{
+  "theme_overrides": {
+    "minuz dark": {
+      "accents": [
+        "#cc241dff",
+        "#98971aff",
+        "#d79921ff",
+        "#458588ff",
+        "#b16286ff",
+        "#689d6aff",
+        "#d65d0eff"
+      ],
+      "elevated_surface.background": "#2B1313FF",
+      "surface.background": "#2B1313FF",
+      "background": "#0C0C1AFF",
+      "status_bar.background": "#0C0C1AFF",
+      "title_bar.background": "#0C0C1AFF",
+      "toolbar.background": "#121204FF",
+      "tab_bar.background": "#2B1313FF",
+      "tab.inactive_background": "#090C1AFF",
+      "tab.active_background": "#4F4433FF",
+      "panel.background": "#2B1313FF",
+      "editor.foreground": "#735B2AFF",
+      "editor.background": "#121204FF",
+      "editor.gutter.background": "#121204FF",
+      "editor.subheader.background": "#2B1313FF",
+      "editor.highlighted_line.background": "#2B1313FF",
+      "editor.line_number": "#E3C127FF",
+      "editor.active_line_number": "#4A912DFF",
+      "terminal.background": "#121204FF",
+      "terminal.foreground": "#735B2AFF",
+      "syntax": {
+        "function": {
+          "color": "#B88FE3FF"
+        }
+      },
+      "panel.overlay_background": "#2B1313FF",
+      "panel.overlay_hover": "#0C0C1AFF",
+      "editor.indent_guide": "#8A7715FF"
+    }
+  }
+}

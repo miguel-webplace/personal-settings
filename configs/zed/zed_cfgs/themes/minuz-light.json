@@ -1,0 +1,149 @@
+{
+  "theme_overrides": {
+    "minuz light": {
+      "accents": [
+        "#cc241dff",
+        "#98971aff",
+        "#d79921ff",
+        "#458588ff",
+        "#b16286ff",
+        "#689d6aff",
+        "#d65d0eff"
+      ],
+      "border": "#E3D6D1FF",
+      "border.variant": "#BFAA9BFF",
+      "border.focused": "#CEF0E3FF",
+      "border.selected": "#A4BAB0FF",
+      "border.disabled": "#B0A49EFF",
+      "elevated_surface.background": "#C48B8BFF",
+      "surface.background": "#C48B8BFF",
+      "background": "#A5A5B8FF",
+      "element.background": "#C7BBB3FF",
+      "element.hover": "#D6C5BCFF",
+      "element.active": "#D4C4BBFF",
+      "element.selected": "#CCBAAFFF",
+      "element.disabled": "#A69790FF",
+      "ghost_element.active": "#D4C4BBFF",
+      "ghost_element.selected": "#CCBAAFFF",
+      "text": "#241D04FF",
+      "text.muted": "#57381EFF",
+      "text.placeholder": "#8A7A5EFF",
+      "text.accent": "#728780FF",
+      "icon": "#241D04FF",
+      "icon.muted": "#57381EFF",
+      "icon.accent": "#728780FF",
+      "status_bar.background": "#D4C1B4FF",
+      "title_bar.background": "#F5C7B5FF",
+      "title_bar.inactive_background": "#696969FF",
+      "toolbar.background": "#D4C1B4FF",
+      "tab_bar.background": "#C48B8BFF",
+      "tab.inactive_background": "#B0B8D6FF",
+      "tab.active_background": "#C9CCD6FF",
+      "panel.background": "#C9CCD6FF",
+      "panel.focused_border": "#BDBBBBFF",
+      "pane.focused_border": "#CEF0E3FF",
+      "editor.foreground": "#735B2AFF",
+      "editor.background": "#C9CCD6FF",
+      "editor.gutter.background": "#C9CCD6FF",
+      "editor.subheader.background": "#C48B8BFF",
+      "editor.active_line.background": "#BFB5A4BF",
+      "editor.highlighted_line.background": "#C48B8BFF",
+      "editor.line_number": "#524807FF",
+      "editor.active_line_number": "#325722FF",
+      "terminal.background": "#C9CCD6FF",
+      "terminal.foreground": "#735B2AFF",
+      "link_text.hover": "#728780FF",
+      "version_control.added": "#3D8518FF",
+      "version_control.modified": "#DB731DFF",
+      "version_control.deleted": "#C92312FF",
+      "syntax": {
+        "attribute": {
+          "color": "#962424FF"
+        },
+        "boolean": {
+          "color": "#873D55FF"
+        },
+        "comment": {
+          "color": "#855309FF"
+        },
+        "comment.doc": {
+          "color": "#6B4E1BFF"
+        },
+        "function": {
+          "color": "#581E87FF"
+        },
+        "keyword": {
+          "color": "#BA5B4CFF"
+        },
+        "label": {
+          "color": "#134266FF"
+        },
+        "number": {
+          "color": "#8F2262FF"
+        },
+        "operator": {
+          "color": "#4F5B78FF"
+        },
+        "property": {
+          "color": "#1B5369FF"
+        },
+        "punctuation": {
+          "color": "#080602FF"
+        },
+        "punctuation.bracket": {
+          "color": "#080602FF"
+        },
+        "punctuation.delimiter": {
+          "color": "#080602FF"
+        },
+        "punctuation.list_marker": {
+          "color": "#080602FF"
+        },
+        "punctuation.markup": {
+          "color": "#080602FF"
+        },
+        "punctuation.special": {
+          "color": "#080602FF"
+        },
+        "string": {
+          "color": "#1D5E07FF"
+        },
+        "string.escape": {
+          "color": "#000000FF"
+        },
+        "string.regex": {
+          "color": "#000000FF"
+        },
+        "string.special": {
+          "color": "#1D5E07FF"
+        },
+        "string.special.symbol": {
+          "color": "#1D5E07FF"
+        },
+        "text.literal": {
+          "color": "#1D5E07FF"
+        },
+        "type": {
+          "color": "#007370FF"
+        },
+        "variable": {
+          "color": "#0A4961FF"
+        },
+        "variable.parameter": {
+          "color": "#12212BFF"
+        },
+        "variable.special": {
+          "color": "#134266FF"
+        }
+      },
+      "panel.overlay_background": "#C48B8BFF",
+      "panel.overlay_hover": "#A5A5B8FF",
+      "version_control.renamed": "#26996CFF",
+      "version_control.conflict": "#B56510FF",
+      "version_control.ignored": "#453C32FF",
+      "editor.indent_guide": "#8A7715FF",
+      "element.selection_background": "#A89494FF",
+      "drop_target.border": "#AB9F9FFF"
+    }
+  }
+}
