@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# uncompress ventoy file to inputed path
+#
+# Usage: ./ventoy-usb.sh <removable-disk-path>
+# Author: Miguel A. Cruz | miguel-webplace | minuz.code@gmail.com
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd )"
+
+tar -xf "$SCRIPT_DIR/ventoy.tar.gz" -o "$1"
+mv "./ventoy-1.1.17" "./ventoy"
