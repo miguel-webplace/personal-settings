@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
 
-# Description : install and configure packagesa and dotfiles automatically
+# Description : install and configure packages and dotfiles automatically
 # Target : Debian 13 (trixie)
 #
-# Packages : <
-# - localsend
-# - zen browser
-# - zsh
-# - oh-my-zsh
-# - neovim        
-# - openssh
-# - zed editor
-# - docker
-# >
-
+# See all of them in 'packages.txt'
 
 # Make sure to run as non-root user
 # if [[ $EUID -eq 0 ]]; then
@@ -24,33 +14,16 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$cd( "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd )"
+. "$SCRIPT_DIR/helpers.cfg"
 
-source "$SCRIPT_DIR/configs/*/*.sh"
-. "./packages.cfg"
+update_pckgs_list
 
+PACKAGES=()
+while IFS= read -r line; do
+  PACKAGES+=("$line")
+done < "$SCRIPT_DIR/packages.txt"
 
-
-# --------- Install packages from different managers ---------
-for pkg in ${apt[@]}; do
-    log "Installing $pkg"
-    apt_install $pkg
+for pack in ${PACKAGES[@]}; do
+    source "$SCRIPT_DIR/configs/$pack/$pack.sh"
+    ${pack}_config
 done
-
-
-for pkg in ${flatpak[@]}; do
-    log "Installing $pkg"
-    apt_install $pkg
-done
-
-
-for pkg in ${curl[@]}; do
-    log "Installing $pkg"
-    apt_install $pkg
-done
-
-
-# ------------- Configure packages ------------
-for pkg in ${config_pkgs[@]}; do
-    log "Configuring $pkg"
-    $pkg

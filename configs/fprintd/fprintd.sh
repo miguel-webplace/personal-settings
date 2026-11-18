@@ -3,10 +3,13 @@
 # configures fingerprint
 
 fprintd_config() {
-    log "Configuring fprintd"
 
+    log "Installing fprintd and libpam-fprintd"
+    sudo apt install fprintd libpam-fprintd
+    
+    log "Configuring fprintd"
     sudo su miguel_andrade
     pam-auth-update --enable fprintd
     fprintd-enroll
-    ok "fingerprint enrolled and enabled to unlock the pc"
+    ok "Fingerprint enrolled and enabled to unlock the pc"
 }

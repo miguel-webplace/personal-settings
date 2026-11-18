@@ -3,8 +3,11 @@
 # configures machine name to other devices on the network
 
 localsend_config() {
-    log "configuring localsend"
 
+    log "Installing localsend"
+    flatpak install -y "org.localsend.localsend_app"
+
+    log "Configuring localsend"
     SCRIPT_DIR_CFG="$SCRIPT_DIR/configs"
     
     LOCALSEND_CONFIG=\
@@ -16,5 +19,5 @@ localsend_config() {
     python3 "$SCRIPT_DIR_CFG/localsend/.localsend.py" \ 
         "$LOCALSEND_CONFIG" "$LOCALSEND_NAME"
 
-    ok "hostname changed to netework"
+    ok "Device name changed"
 }

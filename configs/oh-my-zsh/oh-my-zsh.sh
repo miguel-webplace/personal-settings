@@ -3,8 +3,12 @@
 # configures zsh as default terminal and set .zshrc file
 
 oh_my_zsh_config() {    
-    log "Configuring zsh"
 
+    log "Installing oh-my-zsh"
+    SOURCE="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    curl -fsSL "$SOURCE" | sh
+
+    log "Configuring zsh"
     chsh -s "$(which zsh)"
 
     cp "$SCRIPT_DIR_CFG/oh-my-zsh/.zshrc" "$HOME/.dotfiles/.zshrc"
