@@ -1,0 +1,10 @@
+curl
+desktop
+ffmpeg
+flatpak
+fprintd
+git
+localsend
+openssh
+ventoy
+zen-browser
