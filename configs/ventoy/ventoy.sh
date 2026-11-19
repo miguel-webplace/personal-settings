@@ -4,10 +4,14 @@
 
 ventoy_config() {
 
-    VENTOY_PATH_SRC="$SCRIPT_DIR/configs/ventoy/"
-    VENTOY_PATH_DEST="$HOME/tools/ventoy"
     log "Create tools folder (if not exists) and coping ventoy files"
-    mkdir -p $VENTOY_PATH
-    cp "$VENTOY_PATH_SRC/ventoy-usb.sh_" "$VENTOY_PATH_DEST/ventoy-usb.sh"
-    cp "$VENTOY_PATH_SRC/ventoy.tar.gz" "$VENTOY_PATH_DEST/ventoy.tar.gz"
+    TOOLS_PATH="$HOME/tools/tools/"
+    mkdir -p $TOOLS_PATH
+
+    cp "$SCRIPT_DIR/configs/ventoy/ventoy-usb.sh_" "$TOOLS_PATH/ventoy-usb.sh"
+    cp "$SCRIPT_DIR/configs/ventoy/ventoy.tar.gz" "$TOOLS_PATH/ventoy.tar.gz"
+
+    cd "$TOOLS_PATH/.."
+    ln -s "tools/ventoy/ventoy-usb.sh" "./ventoy-usb.sh"
+    cd "$SCRIPT_DIR"
 }
