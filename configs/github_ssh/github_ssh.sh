@@ -12,7 +12,7 @@ github_ssh_config() {
     GITHUB_KEY="github_key"
     SSH_FILEPATH="$HOME/.dotfiles/$GITHUB_KEY"
     
-    ssh-keygen -t rsa -b 4096 -C "$SSH_EMAIL" \
+    ssh-keygen -t ed25519 -C "$SSH_EMAIL" \
     -N "$SSH_PASSPHRASE" -f "$SSH_FILEPATH"
 
     cd "$HOME/.ssh"
