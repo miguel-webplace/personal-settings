@@ -5,12 +5,10 @@
 
 artcraft_config() {
 
-    ARTCRAFT_PATH="$HOME/downloads/zips/artcraft-launcher.deb"
-    
-    log "Downloading artcraft launcher..."
-    wget -O "$ARTCRAFT_PATH" \
-    "https://github.com/storytold/craft-launcher/releases/download/v0.19.2/artcraft-launcher-0.19.2-linux-x86_64.deb"
-    log "Download done" 
+    log "Downloading artcraft launcher"
+    ARTCRAFT_PATH="$SCRIPT_DIR/configs/artcraft/artcraft-launcher.deb"
+    ARTCRAFT_DOWNLOAD="https://github.com/storytold/craft-launcher/releases/download/v0.19.2/artcraft-launcher-0.19.2-linux-x86_64.deb"
+    wget -P "$SCRIPT_DIR/configs/artcraft/" $ARTCRAFT_DOWNLOAD
 
     log "Installing artcraft laucher..."
     sudo apt install "$ARTCRAFT_PATH"
