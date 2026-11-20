@@ -1,0 +1,3 @@
+[submodule "configs/yt-dwn/yt-down"]
+	path = configs/yt-dwn/yt-down
+	url = git@github.com:miguel-webplace/yt-download.git
